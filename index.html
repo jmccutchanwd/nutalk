@@ -17,15 +17,27 @@
     <!-- My CSS -->
     <link rel="stylesheet" href="/css/style.css">
   </head>
-  <body>
+  <body ng-app="UserApp">
     <div class="container">
-      <div ng-app="myBusApp">
-        <div>
-          <h1></h1>
+      <div  class="row">
+        <div class="col-md-12">
+          <h1>User App</h1>
+          <hr>
+          <br>
+          <br>
+        </div><!-- /.col-md-12-->
+        <div class="col-md-6">
+          <img src="/images/dog.jpg" alt="smiling dog" class="img img-fluid">
+          <h2>Some Headline</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ipsum lacus, suscipit a pretium in, semper quis urna. Aenean at maximus elit. Aliquam lacinia, ligula eu accumsan iaculis, elit libero facilisis lorem, non condimentum sapien nisl id nulla.</p>
+          <p>Vivamus egestas dolor a imperdiet scelerisque. Donec congue, ante eu pellentesque ornare, eros nunc blandit felis, et porta risus purus eu mi. Praesent lacinia rutrum lorem et congue. Nulla facilisi. Fusce pellentesque maximus fermentum. Pellentesque suscipit purus ligula, nec lacinia magna ornare in. Nullam mollis molestie lorem, at lobortis sapien lobortis at. Cras suscipit magna eu dui posuere, sed elementum ante ultricies. Vivamus sed tempus tortor. Sed eu malesuada metus, ut ultrices ante.</p>
+        </div><!-- /.col-md-6-->
+        <div class="col-md-6">
+          <h3>App Goes Here</h3>
           <div ng-view ></div><!-- / App View -->
-        </div>
-      </div><!-- / ng-app -->
-    </div><!-- / ng-container -->
+        </div><!-- /.col-md-6-->
+      </div><!-- /.row-->
+    </div><!-- /.container -->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="/lib/jquery/dist/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -34,11 +46,17 @@
     <script src="/lib/angular/angular.min.js"></script>
     <!-- ngRoute Library -->
     <script src="/lib/angular-route/angular-route.min.js"></script>
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/3.6.8/firebase.js"></script>
     <!-- My App -->
     <script src="/app/app.js"></script>
     <script src="/app/config.js"></script>
-    <script src="/app/factories/"></script>
-    <script src="/app/controllers/RootCtl.js"></script>
-    <script src="/app/controllers/"></script>
+    <!-- Services -->
+    <script src="/app/services/login.js"></script>
+    <script src="/app/services/post.js"></script>
+    <!-- Controllers -->
+    <script src="/app/controllers/chat.js"></script>
+    <script src="/app/controllers/login.js"></script>
+    <script src="/app/controllers/main.js"></script>
   </body>
 </html>
