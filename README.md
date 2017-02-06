@@ -1,4 +1,4 @@
-(https://github.com/jmccutchanwd/nutalk/blob/master/images/nutalk-logo.png)
+[logo](/images/nutalk-logo.png)
 
 
 # nuTalk
