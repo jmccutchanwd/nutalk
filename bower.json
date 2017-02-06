@@ -1,0 +1,23 @@
+{
+  "name": "nutalk",
+  "homepage": "https://github.com/jmccutchanwd/nutalk",
+  "authors": [
+    "John McCutchan <john.mccutchan.wd@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "lib"
+  ],
+  "dependencies": {
+    "angular": "^1.6.1",
+    "angular-route": "^1.6.1",
+    "bootstrap": "^3.3.7"
+  }
+}
