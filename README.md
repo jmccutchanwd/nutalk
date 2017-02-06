@@ -1,3 +1,6 @@
+(https://github.com/jmccutchanwd/nutalk/blob/master/images/nutalk-logo.png)
+
+
 # nuTalk
 A Chat App for Small to Medium Business
 
