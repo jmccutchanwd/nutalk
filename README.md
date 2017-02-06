@@ -1,4 +1,4 @@
-# nutalk
+# nuTalk
 A Chat App for Small to Medium Business
 
 ### Trello Board
