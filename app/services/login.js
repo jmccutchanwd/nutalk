@@ -5,5 +5,8 @@ app.service('LoginServices', function($http, $q){
     login: function(email, pass){
       return $q.resolve(firebase.auth().createUserWithEmailAndPassword(email, pass))
     },
+    logout: function(){
+      return $q.resolve(firebase.auth().currentUser.logout())//test this******
+    }
   }
 })
