@@ -5,6 +5,11 @@ app.controller('LoginCtrl', function($scope, LoginServices,$location){
     LoginServices
     .login($scope.email, $scope.password)
     .then (console.log("Signed In"))
-    .then(() => $location.url('#/chat'))//this is not working
+    .then(() => $location.url('/chat'))
+  }
+  $scope.logout = () =>{
+    LoginServices
+    .logout()
+    .then(()=> $.location.url('/'))
   }
 })
