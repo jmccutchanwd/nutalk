@@ -8,8 +8,19 @@ app.config(function ($routeProvider, $locationProvider){
     storageBucket: "velocilinx-chat.appspot.com",
     messagingSenderId: "168034279158"
   };
-firebase.initializeApp(config);
-$locationProvider.hashPrefix('');
+  firebase.initializeApp(config);
+  const checkForAuth = {
+      checkForAuth ($location) {
+        // http://stackoverflow.com/questions/37370224/firebase-stop-listening-onauthstatechanged
+        const authReady = firebase.auth().onAuthStateChanged(user => {
+          authReady()
+          if (!user) {
+            $location.url('/')
+          }
+        })
+      }
+    }
+  $locationProvider.hashPrefix('');
   $routeProvider
     .when('/', {
       controller: 'MainCtrl',
@@ -21,9 +32,25 @@ $locationProvider.hashPrefix('');
     })
     .when('/chat', {
       controller: 'ChatCtrl',
-      templateUrl: 'partials/chat.html'
+      templateUrl: 'partials/chat.html',
+      resolve:{
+        "userUID" : function(){
+          return {
+            uid: function(){
+              return firebase.auth().currentUser.uid
+            }
+          }
+        }
+      }
+
     })
     .otherwise({
       redirectTo: '/'
     })
+})
+//
+app.run(function($rootScope){
+  $rootScope.name = "";
+  $rootScope.uid = "";
+  console.log("Test: ",$rootScope.name);//test================================
 })
