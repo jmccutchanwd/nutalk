@@ -35,5 +35,7 @@ app.controller('ChatCtrl', function($location, $scope, $rootScope, PostServices,
   $scope.logout = ()=> {
     LoginServices
     .logout()
+    .then(console.log("Logged Out"))
+    .then($location.url('/'))
   }
 })
