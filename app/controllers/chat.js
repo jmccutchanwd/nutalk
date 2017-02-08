@@ -18,6 +18,9 @@ app.controller('ChatCtrl', function($location, $scope, $rootScope, PostServices,
   $scope.chatSend = ()=> {
     PostServices
     .chatSend($scope.chat)
+    .then(()=>{
+      $scope.getChat()
+    })
   }
   $scope.getChat = ()=> {
     PostServices
@@ -25,9 +28,9 @@ app.controller('ChatCtrl', function($location, $scope, $rootScope, PostServices,
     .then((response)=>{
       console.log("GetChat: ", response);
       $rootScope.list = response;
+      $scope.chat.conversation = null;
       console.log("GetChat Global: ", $rootScope.list);
     })
-    .then($scope.chatSend())
   }
   $scope.logout = ()=> {
     LoginServices
