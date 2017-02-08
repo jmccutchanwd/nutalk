@@ -1,12 +1,16 @@
 /* John McCutchan ========================================= */
 console.log("Login services-on");
-app.service('LoginServices', function($http, $q){
+app.service('LoginServices', function($http, $q, $location){
+
   return {
     login: function(email, pass){
       return $q.resolve(firebase.auth().createUserWithEmailAndPassword(email, pass))
     },
     logout: function(){
-      return $q.resolve(firebase.auth().currentUser.logout())//test this******
+      var user = firebase.auth().currentUser;
+      console.log("User before delete: ", user)//test ============
+      return user.delete()
     }
   }
+
 })
