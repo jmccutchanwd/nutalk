@@ -1,9 +1,9 @@
 <div>
   <h2>Chat</h2>
   <p>Current chat:</p><br>
-  <ul>
-    <li>{{chat.conversation}}</li>
-  </ul><br>
+  <p>{{"Get chat history"}}</p>
+  <p>{{chat.name}}: {{chat.conversation}}</p>
+  <br>
   <p>Please type here to send a message to sales:</p>
   <textarea rows="10" cols="80" ng-model="chat.conversation"></textarea><br><br>
   <button class="btn btn-success" ng-click="chatSend()">Submit</button>
