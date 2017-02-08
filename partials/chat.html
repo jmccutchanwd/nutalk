@@ -1,11 +1,19 @@
 <div>
   <h2>Chat</h2>
   <p>Current chat:</p><br>
-  <p>{{"Get chat history"}}</p>
+  <ul>
+    <li ng-repeat="(key, value) in list | filterBy: ['$rootScope.uid']">{{value.name}}: {{value.conversation}}</li>
+  </ul>
   <p>{{chat.name}}: {{chat.conversation}}</p>
   <br>
   <p>Please type here to send a message to sales:</p>
   <textarea rows="10" cols="80" ng-model="chat.conversation"></textarea><br><br>
-  <button class="btn btn-success" ng-click="chatSend()">Submit</button>
+  <button class="btn btn-success" ng-click="getChat()">Submit</button>
   <button class="btn btn-danger" ng-click="logout()">Close Chat</button>
 </div>
+
+
+<!--
+| filterBy: ['list.data'] : $rootScope.uid"
+ng-repeat="item in list | toArray | filterBy: ['$rootScope.uid'] : $rootScope.uid"
+-->
