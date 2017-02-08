@@ -13,4 +13,7 @@ app.controller('LoginCtrl', function($scope, LoginServices,$location,$rootScope)
     .logout()
     .then(()=> $location.url('/'))
   }
+  $scope.cancel = function(){
+      $location.url('/')
+    }
 })
