@@ -2,7 +2,7 @@
   <h2>Chat</h2>
   <p>Current chat:</p><br>
   <ul>
-    <li ng-repeat="(key, value) in list | filterBy: ['$rootScope.uid']">{{value.name}}: {{value.conversation}}</li>
+    <li ng-repeat="(key, value) in list">{{value.name}}: {{value.conversation}}</li>
   </ul>
   <p>{{chat.name}}: {{chat.conversation}}</p>
   <br>
