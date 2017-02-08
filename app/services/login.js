@@ -8,7 +8,6 @@ app.service('LoginServices', function($http, $q, $location){
     },
     logout: function(){
       var user = firebase.auth().currentUser;
-      console.log("User before delete: ", user)//test ============
       return user.delete()
     }
   }
