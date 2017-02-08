@@ -52,5 +52,4 @@ app.config(function ($routeProvider, $locationProvider){
 app.run(function($rootScope){
   $rootScope.name = "";
   $rootScope.uid = "";
-  console.log("Test: ",$rootScope.name);//test================================
 })
