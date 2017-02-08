@@ -8,8 +8,6 @@ app.controller('ChatCtrl', function($location, $scope, $rootScope, PostServices,
   //assign local $scope uid to global scope
   $rootScope.uid = $scope.uid
   console.log("$rootScope UID: ",$rootScope.uid)
-  //check to see name is global
-  console.log("Test2: ", $rootScope.name)
   //build chat object
   $scope.chat = {
     "uid":$rootScope.uid,
@@ -20,6 +18,16 @@ app.controller('ChatCtrl', function($location, $scope, $rootScope, PostServices,
   $scope.chatSend = ()=> {
     PostServices
     .chatSend($scope.chat)
+  }
+  $scope.getChat = ()=> {
+    PostServices
+    .getChat()
+    .then((response)=>{
+      console.log("GetChat: ", response);
+      $rootScope.list = response;
+      console.log("GetChat Global: ", $rootScope.list);
+    })
+    .then($scope.chatSend())
   }
   $scope.logout = ()=> {
     LoginServices
