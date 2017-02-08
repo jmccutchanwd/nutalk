@@ -15,6 +15,12 @@ There will be a business app that is embedded in a subdomain of the site the use
 
 =======
 
+## Business App
+
+[Located Here](#)(Not built yet)
+
+=======
+
 ### Trello Board
 [Board](https://trello.com/b/LfpPUyjw/nutalk)
 
