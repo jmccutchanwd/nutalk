@@ -25,5 +25,5 @@ There will be a business app that is embedded in a subdomain of the site the use
 [Board](https://trello.com/b/LfpPUyjw/nutalk)
 
 ### Moqups (In Progress)
-[Mockups](https://app.moqups.com/john.mccutchan.wd@gmail.com/Tfyfff33Ly/view/page/af461f17c?ui=0)
+[Mockups](https://app.moqups.com/john.mccutchan.wd@gmail.com/Tfyfff33Ly/view)
 
