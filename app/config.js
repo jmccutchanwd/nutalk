@@ -37,6 +37,11 @@ angular.module('UserApp')
       templateUrl: 'partials/chat.html',
       controller: 'ChatCtrl as chatCtrl',
     })
+    .state('profile', {
+      url: '/profile',
+      templateUrl: 'partials/profile.html',
+      controller: 'CustomerCtrl as customerCtrl',
+    })
 
     $urlRouterProvider.otherwise('/');
 })
