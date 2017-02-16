@@ -1,4 +1,3 @@
 /* John McCutchan ========================================= */
 console.log('ChatCtrl-on');
-app.controller('ChatCtrl', function(){
-})
+app.controller('ChatCtrl', function(){})

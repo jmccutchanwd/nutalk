@@ -1,4 +1,3 @@
 /* John McCutchan ========================================= */
 console.log('LoginCtrl-on');
-app.controller('LoginCtrl', function(){
-})
+app.controller('LoginCtrl', function(){})

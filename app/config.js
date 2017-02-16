@@ -1,6 +1,6 @@
 /* John McCutchan ========================================= */
 console.log("Config-on");
-app.config(function ($routeProvider, $urlRouterProvider){
+app.config(function ($stateProvider, $urlRouterProvider){
   var config = {
     apiKey: "AIzaSyAT3nZ5i2HSjhZbQbeulTd1J5wM2OAq5uU",
     authDomain: "velocilinx-chat.firebaseapp.com",
@@ -13,32 +13,23 @@ app.config(function ($routeProvider, $urlRouterProvider){
   $stateProvider
     .state('home', {
       url: '/',
-      controller: 'MainCtrl',
-      templateUrl: 'partials/main.html'
+      controller: 'MainCtrl as mainCtrl',
+      templateUrl: 'partials/main.html',
     })
     .state('main', {
       url: '/main',
-      controller: 'MainCtrl',
-      templateUrl: 'partials/start.html'
+      controller: 'MainCtrl as mainCtrl',
+      templateUrl: 'partials/start.html',
     })
     .state('login', {
       url: '/login',
-      controller: 'LoginCtrl',
-      templateUrl: 'partials/login.html'
+      controller: 'LoginCtrl as loginCtrl',
+      templateUrl: 'partials/login.html',
     })
     .state('chat', {
       url: '/chat',
-      controller: 'ChatCtrl',
+      controller: 'ChatCtrl as chatCtrl',
       templateUrl: 'partials/chat.html',
-      resolve:{
-        "userUID" : function(){
-          return {
-            uid: function(){
-              return firebase.auth().currentUser.uid
-            }
-          }
-        }
-      }
     })
     .otherwise({
       redirectTo: '/'
