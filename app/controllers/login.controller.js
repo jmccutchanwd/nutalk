@@ -10,7 +10,7 @@ angular.module('UserApp')
     loginCtrl.login = function(){
       Login.$signInWithEmailAndPassword(loginCtrl.user.email, loginCtrl.user.password)
       .then(function(login){
-        $state.go('home');
+        $state.go('chat');
       }, function(error){
         loginCtrl.error = error;
       });
