@@ -1,7 +1,7 @@
 /* John McCutchan ========================================= */
 console.log("Login services-on");
 angular.module('UserApp')
-  .service('LoginServices', function($firebaseAuth){
+  .factory('Login', function($firebaseAuth){
     var auth = $firebaseAuth();
     return auth;
 })
