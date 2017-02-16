@@ -1,3 +1,6 @@
 /* John McCutchan ========================================= */
 console.log('LoginCtrl-on');
-app.controller('LoginCtrl', function(){})
+angular.module('UserApp', ['firebase', 'ui.router'])
+  .controller('LoginCtrl', function(){
+    var loginCtrl = this;
+  })

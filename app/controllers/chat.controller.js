@@ -1,3 +1,6 @@
 /* John McCutchan ========================================= */
 console.log('ChatCtrl-on');
-app.controller('ChatCtrl', function(){})
+angular.module('UserApp', ['firebase', 'ui.router'])
+  .controller('ChatCtrl', function(){
+    var chatCtrl = this;
+  })

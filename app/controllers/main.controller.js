@@ -1,3 +1,6 @@
 /* John McCutchan ========================================= */
 console.log('MainCtrl-on');
-app.controller('MainCtrl', function(){})
+angular.module('UserApp', ['firebase', 'ui.router'])
+  .controller('MainCtrl', function(){
+    var mainCtrl = this;
+  })

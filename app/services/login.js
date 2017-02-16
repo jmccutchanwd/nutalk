@@ -1,5 +1,6 @@
 /* John McCutchan ========================================= */
 console.log("Login services-on");
-app.service('LoginServices', function(){
+angular.module('UserApp', ['firebase', 'ui.router'])
+  .service('LoginServices', function(){
 
 })

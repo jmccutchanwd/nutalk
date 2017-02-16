@@ -1,5 +1,6 @@
 /* John McCutchan ========================================= */
 console.log("Post Services-on");
-app.service('PostServices', function(){
+angular.module('UserApp', ['firebase', 'ui.router'])
+  .service('PostServices', function(){
 
 })

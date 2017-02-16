@@ -1,6 +1,7 @@
 /* John McCutchan ========================================= */
 console.log("Config-on");
-app.config(function ($stateProvider, $urlRouterProvider){
+angular.module('UserApp', ['firebase', 'ui.router'])
+  .config(function ($stateProvider, $urlRouterProvider){
   var config = {
     apiKey: "AIzaSyAT3nZ5i2HSjhZbQbeulTd1J5wM2OAq5uU",
     authDomain: "velocilinx-chat.firebaseapp.com",
@@ -13,25 +14,29 @@ app.config(function ($stateProvider, $urlRouterProvider){
   $stateProvider
     .state('home', {
       url: '/',
-      controller: 'MainCtrl as mainCtrl',
       templateUrl: 'partials/main.html',
+      controller: 'MainCtrl as mainCtrl'
     })
     .state('main', {
       url: '/main',
-      controller: 'MainCtrl as mainCtrl',
       templateUrl: 'partials/start.html',
+      controller: 'MainCtrl as mainCtrl'
     })
     .state('login', {
       url: '/login',
-      controller: 'LoginCtrl as loginCtrl',
       templateUrl: 'partials/login.html',
+      controller: 'LoginCtrl as loginCtrl'
+    })
+    .state('register', {
+      url: '/register',
+      templateUrl: 'partials/register.html',
+      controller: 'RegisterCtrl as registerCtrl'
     })
     .state('chat', {
       url: '/chat',
-      controller: 'ChatCtrl as chatCtrl',
       templateUrl: 'partials/chat.html',
+      controller: 'ChatCtrl as chatCtrl'
     })
-    .otherwise({
-      redirectTo: '/'
-    })
+
+    $urlRouterProvider.otherwise('/');
 })
