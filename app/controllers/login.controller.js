@@ -16,7 +16,7 @@ angular.module('UserApp')
       });
     };
     loginCtrl.register = function(){
-      Login.$createUserWithEmailAndPassword(loginCtrl.user.email, loginCtrl.usser.pasword)
+      Login.$createUserWithEmailAndPassword(loginCtrl.user.email, loginCtrl.user.password)
       .then(function(user){
         loginCtrl.login();
       }, function(error){
