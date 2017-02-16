@@ -30,7 +30,7 @@ angular.module('UserApp')
     .state('register', {
       url: '/register',
       templateUrl: 'partials/register.html',
-      controller: 'RegisterCtrl as registerCtrl',
+      controller: 'LoginCtrl as loginCtrl',
     })
     .state('chat', {
       url: '/chat',
