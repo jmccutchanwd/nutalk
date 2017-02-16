@@ -1,4 +1,16 @@
 <div>
-  <h2>Register</h2>
-  <a class="btn btn-danger" ui-sref="start">Cancel</a>
+  <div>
+    <h2>Register</h2>
+  </div>
+  <div ng-show="loginCtrl.error">
+    <span>{{ loginCtrl.error.message }}</span>
+  </div>
+  <form ng-submit="loginCtrl.register()">
+    <input type="email" class="form-control" placeholder="Email" ng-model="loginCtrl.user.email">
+    <br>
+    <input type="password" class="form-control" placeholder="Password" ng-model="loginCtrl.user.password">
+    <br>
+    <input type="submit" class="btn btn-primary" value="Register">
+    <a class="btn btn-danger" ui-sref="start">Cancel</a>
+  </form>
 </div>
