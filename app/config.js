@@ -1,6 +1,6 @@
 /* John McCutchan ========================================= */
 console.log("Config-on");
-app.config(function ($routeProvider, $locationProvider){
+app.config(function ($routeProvider, $urlRouterProvider){
   var config = {
     apiKey: "AIzaSyAT3nZ5i2HSjhZbQbeulTd1J5wM2OAq5uU",
     authDomain: "velocilinx-chat.firebaseapp.com",
@@ -9,18 +9,25 @@ app.config(function ($routeProvider, $locationProvider){
     messagingSenderId: "168034279158"
   };
   firebase.initializeApp(config);
-
-  $locationProvider.hashPrefix('');
-  $routeProvider
-    .when('/', {
+  //
+  $stateProvider
+    .state('home', {
+      url: '/',
       controller: 'MainCtrl',
       templateUrl: 'partials/main.html'
     })
-    .when('/login', {
+    .state('main', {
+      url: '/main',
+      controller: 'MainCtrl',
+      templateUrl: 'partials/start.html'
+    })
+    .state('login', {
+      url: '/login',
       controller: 'LoginCtrl',
       templateUrl: 'partials/login.html'
     })
-    .when('/chat', {
+    .state('chat', {
+      url: '/chat',
       controller: 'ChatCtrl',
       templateUrl: 'partials/chat.html',
       resolve:{
@@ -36,9 +43,4 @@ app.config(function ($routeProvider, $locationProvider){
     .otherwise({
       redirectTo: '/'
     })
-})
-//
-app.run(function($rootScope){
-  $rootScope.name = "";
-  $rootScope.uid = "";
 })
