@@ -1,6 +1,6 @@
 /* John McCutchan ========================================= */
 console.log("Config-on");
-angular.module('UserApp', ['firebase', 'ui.router'])
+angular.module('UserApp')
   .config(function ($stateProvider, $urlRouterProvider){
   var config = {
     apiKey: "AIzaSyAT3nZ5i2HSjhZbQbeulTd1J5wM2OAq5uU",
@@ -15,27 +15,27 @@ angular.module('UserApp', ['firebase', 'ui.router'])
     .state('home', {
       url: '/',
       templateUrl: 'partials/main.html',
-      controller: 'MainCtrl as mainCtrl'
+      controller: 'MainCtrl as mainCtrl',
     })
-    .state('main', {
-      url: '/main',
+    .state('start', {
+      url: '/start',
       templateUrl: 'partials/start.html',
-      controller: 'MainCtrl as mainCtrl'
+      controller: 'MainCtrl as mainCtrl',
     })
     .state('login', {
       url: '/login',
       templateUrl: 'partials/login.html',
-      controller: 'LoginCtrl as loginCtrl'
+      controller: 'LoginCtrl as loginCtrl',
     })
     .state('register', {
       url: '/register',
       templateUrl: 'partials/register.html',
-      controller: 'RegisterCtrl as registerCtrl'
+      controller: 'RegisterCtrl as registerCtrl',
     })
     .state('chat', {
       url: '/chat',
       templateUrl: 'partials/chat.html',
-      controller: 'ChatCtrl as chatCtrl'
+      controller: 'ChatCtrl as chatCtrl',
     })
 
     $urlRouterProvider.otherwise('/');
