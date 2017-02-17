@@ -23,4 +23,4 @@ angular.module('UserApp')
         loginCtrl.error = error;
       });
     };
-  });
+  })

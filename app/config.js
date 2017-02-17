@@ -1,5 +1,5 @@
 /* John McCutchan ========================================= */
-console.log("Config-on");
+console.log('Config-on');
 angular.module('UserApp')
   .config(function ($stateProvider, $urlRouterProvider){
   var config = {
@@ -12,36 +12,116 @@ angular.module('UserApp')
   firebase.initializeApp(config);
   //
   $stateProvider
-    .state('home', {
-      url: '/',
-      templateUrl: 'partials/main.html',
-      controller: 'MainCtrl as mainCtrl',
-    })
+    .state('main', {
+        url: '/',
+        templateUrl: 'partials/main.html',
+        resolve: {
+          requireNoAuth: function($state, Login){
+            return Login.$requireSignIn().then(function(auth){
+              $state.go('chat');
+            }, function(error){
+              return;
+            });
+          }
+        }
+      })
     .state('start', {
       url: '/start',
-      templateUrl: 'partials/start.html',
       controller: 'MainCtrl as mainCtrl',
+      templateUrl: 'partials/start.html',
+      resolve: {
+          requireNoAuth: function($state, Login){
+            return Login.$requireSignIn().then(function(auth){
+              $state.go('chat');
+            }, function(error){
+              return;
+            })
+          }
+        }
     })
     .state('login', {
       url: '/login',
-      templateUrl: 'partials/login.html',
       controller: 'LoginCtrl as loginCtrl',
+      templateUrl: 'partials/login.html',
+      resolve: {
+          requireNoAuth: function($state, Login){
+            return Login.$requireSignIn().then(function(auth){
+              $state.go('main');
+            }, function(error){
+              return;
+            })
+          }
+        }
     })
     .state('register', {
       url: '/register',
-      templateUrl: 'partials/register.html',
       controller: 'LoginCtrl as loginCtrl',
-    })
-    .state('chat', {
-      url: '/chat',
-      templateUrl: 'partials/chat.html',
-      controller: 'ChatCtrl as chatCtrl',
+      templateUrl: 'partials/register.html',
+      resolve: {
+          requireNoAuth: function($state, Login){
+            return Login.$requireSignIn().then(function(auth){
+              $state.go('main');
+            }, function(error){
+              return;
+            })
+          }
+        }
     })
     .state('profile', {
       url: '/profile',
-      templateUrl: 'partials/profile.html',
       controller: 'CustomerCtrl as customerCtrl',
-    })
+      templateUrl: 'partials/profile.html',
+      resolve: {
+          auth: function($state, Chat, Login){
+            return Login.$requireSignIn().catch(function(){ // if not authenticated, catch them
+              $state.go('main');
+            });
+          },
 
+          profile: function(Chat, Login){
+            return Login.$requireSignIn().then(function(auth){
+              return Chat.getProfile(auth.uid).$loaded();
+            });
+          }
+        }
+    })
+    .state('chat', {
+      url: '/chat',
+      controller: 'ChatCtrl as chatCtrl',
+      templateUrl: 'partials/chat.html',
+      resolve:{
+          channels: function(Chat){
+            return Chat.$loaded();
+          },
+          profile: function($state, Login, Chat){
+            return Login.$requireSignIn().then(function(auth){
+              return Chat.getProfile(auth.uid).$loaded().then(function(profile){
+                if(profile.displayName){ // if true return the name
+                  return profile;
+                }else{
+                  $state.go('profile'); // if false goto profile
+                }
+              });
+            }, function(error){
+              $state.go('main');
+            });
+          }
+        }
+    })
+    .state('messages.direct', {
+        url: '/{uid}/messages/direct',
+        controller: 'MessageCtrl as messageCtrl',
+        templateUrl: 'partials/mesage.html',
+        resolve: {
+          messages: function($stateParams, Messages, profile){
+            return Messages.forUsers($stateParams.uid, profile.$id).$loaded();
+          },
+          channelName: function($stateParams, Chat){
+            return Chat.all.$loaded().then(function(){
+              return '@'+Chat.getDisplayName($stateParams.uid);
+            });
+          }
+        }
+      })
     $urlRouterProvider.otherwise('/');
 })

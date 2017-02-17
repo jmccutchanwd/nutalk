@@ -1,5 +1,27 @@
 <div>
-  <h2>Chat</h2>
-  <button class="btn btn-success" ng-click="#">Submit</button>
-  <button class="btn btn-danger" ng-click="#">Close Chat</button>
+  <div class="sidebar">
+    <div class="list-head">Salesman</div>
+    <div class="channel" ng-repeat="user in channelsCtrl.users">
+      <a ng-if="user.$id !== channelsCtrl.profile.$id" ui-sref="channels.direct({uid: user.$id})" ui-sref-active="selected">
+      <span class="presence" ng-class="{online: user.online}"></span>
+          {{ user.displayName }}
+      </a>
+    </div>
+  </div>
+
+  <div class="my-info">
+    <div class="customer-info">
+      <div class="customer-name">
+        <span class="presence" ng-class="{online: chatCtrl.profile.online}"></span>
+          {{ chatCtrl.profile.displayName }}
+      </div>
+      <div class="options">
+        <a href="#" ui-sref="profile">Edit profile</a>
+        <a href="#" ng-click="chatCtrl.logout()">Logout</a>
+      </div>
+    </div>
+  </div>
+  <!-- <div>
+    <ui-view></ui-view>
+  </div> -->
 </div>

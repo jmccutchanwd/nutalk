@@ -1,7 +1,7 @@
 /* John McCutchan ========================================= */
-console.log('ChatCtrl-on');
+console.log('CustomerCtrl-on');
 angular.module('UserApp')
-  .controller('CustomerCtrl', function(){
+  .controller('CustomerCtrl', function($state, md5, auth, profile){
     var customerCtrl = this;
     customerCtrl.profile = profile;
 

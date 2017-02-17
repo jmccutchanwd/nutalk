@@ -1,6 +1,6 @@
 /* John McCutchan ========================================= */
-console.log("Post Services-on");
+console.log('Message services-on');
 angular.module('UserApp')
-  .service('PostServices', function(){
+  .factory('Message', function(){
 
 })
