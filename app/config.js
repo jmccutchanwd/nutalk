@@ -12,90 +12,78 @@ angular.module('UserApp')
   firebase.initializeApp(config);
   //
   $stateProvider
-    .state('main', {
+      .state('home', {
         url: '/',
-        templateUrl: 'partials/main.html',
+        templateUrl: 'partials/home.html',
         resolve: {
-          requireNoAuth: function($state, Login){
-            return Login.$requireSignIn().then(function(auth){
-              $state.go('chat');
+          requireNoAuth: function($state, Auth){
+            return Auth.$requireSignIn().then(function(auth){
+              $state.go('channels');
             }, function(error){
               return;
+            })
+          }
+        }
+      })
+      .state('login', {
+        url: '/login',
+        controller: 'AuthCtrl as authCtrl',
+        templateUrl: 'partials/login.html',
+        resolve: {
+          requireNoAuth: function($state, Auth){
+            return Auth.$requireSignIn().then(function(auth){
+              $state.go('home');
+            }, function(error){
+              return;
+            })
+          }
+        }
+      })
+      .state('register', {
+        url: '/register',
+        controller: 'AuthCtrl as authCtrl',
+        templateUrl: 'partials/register.html',
+        resolve: {
+          requireNoAuth: function($state, Auth){
+            return Auth.$requireSignIn().then(function(auth){
+              $state.go('home');
+            }, function(error){
+              return;
+            })
+          }
+        }
+      })
+
+      .state('profile', {
+        url: '/profile',
+        controller: 'ProfileCtrl as profileCtrl',
+        templateUrl: 'partials/profile.html',
+        resolve: {
+          auth: function($state, Users, Auth){
+            return Auth.$requireSignIn().catch(function(){ // if not authenticated, catch them
+              $state.go('home');
+            });
+          },
+
+          profile: function(Users, Auth){
+            return Auth.$requireSignIn().then(function(auth){
+              return Users.getProfile(auth.uid).$loaded();
             });
           }
         }
       })
-    .state('start', {
-      url: '/start',
-      controller: 'MainCtrl as mainCtrl',
-      templateUrl: 'partials/start.html',
-      resolve: {
-          requireNoAuth: function($state, Login){
-            return Login.$requireSignIn().then(function(auth){
-              $state.go('chat');
-            }, function(error){
-              return;
-            })
-          }
-        }
-    })
-    .state('login', {
-      url: '/login',
-      controller: 'LoginCtrl as loginCtrl',
-      templateUrl: 'partials/login.html',
-      resolve: {
-          requireNoAuth: function($state, Login){
-            return Login.$requireSignIn().then(function(auth){
-              $state.go('main');
-            }, function(error){
-              return;
-            })
-          }
-        }
-    })
-    .state('register', {
-      url: '/register',
-      controller: 'LoginCtrl as loginCtrl',
-      templateUrl: 'partials/register.html',
-      resolve: {
-          requireNoAuth: function($state, Login){
-            return Login.$requireSignIn().then(function(auth){
-              $state.go('main');
-            }, function(error){
-              return;
-            })
-          }
-        }
-    })
-    .state('profile', {
-      url: '/profile',
-      controller: 'CustomerCtrl as customerCtrl',
-      templateUrl: 'partials/profile.html',
-      resolve: {
-          auth: function($state, Chat, Login){
-            return Login.$requireSignIn().catch(function(){ // if not authenticated, catch them
-              $state.go('main');
-            });
-          },
 
-          profile: function(Chat, Login){
-            return Login.$requireSignIn().then(function(auth){
-              return Chat.getProfile(auth.uid).$loaded();
-            });
-          }
-        }
-    })
-    .state('chat', {
-      url: '/chat',
-      controller: 'ChatCtrl as chatCtrl',
-      templateUrl: 'partials/chat.html',
-      resolve:{
-          channels: function(Chat){
-            return Chat.$loaded();
+      .state('channels', {
+        url: '/channels',
+        controller: 'ChannelsCtrl as channelsCtrl',
+        templateUrl: 'partials/index.html',
+        resolve:{
+          channels: function(Channels){
+            return Channels.$loaded();
           },
-          profile: function($state, Login, Chat){
-            return Login.$requireSignIn().then(function(auth){
-              return Chat.getProfile(auth.uid).$loaded().then(function(profile){
+          profile: function($state, Auth, Users){
+            return Auth.$requireSignIn().then(function(auth){
+              return Users.getProfile(auth.uid).$loaded().then(function(profile){
                 if(profile.displayName){ // if true return the name
                   return profile;
                 }else{
@@ -103,25 +91,47 @@ angular.module('UserApp')
                 }
               });
             }, function(error){
-              $state.go('main');
-            });
-          }
-        }
-    })
-    .state('messages.direct', {
-        url: '/{uid}/messages/direct',
-        controller: 'MessageCtrl as messageCtrl',
-        templateUrl: 'partials/mesage.html',
-        resolve: {
-          messages: function($stateParams, Messages, profile){
-            return Messages.forUsers($stateParams.uid, profile.$id).$loaded();
-          },
-          channelName: function($stateParams, Chat){
-            return Chat.all.$loaded().then(function(){
-              return '@'+Chat.getDisplayName($stateParams.uid);
+              $state.go('home');
             });
           }
         }
       })
+
+      .state('channels.messages', {
+        url: '/{channelId}/messages',
+        templateUrl: 'partials/messages.html',
+        controller: 'MessagesCtrl as messagesCtrl',
+        resolve: {
+          messages: function($stateParams, Messages) {
+            return Messages.forChannel($stateParams.channelId).$loaded();
+          },
+          channelName: function($stateParams, channels) {
+            return channels.$getRecord($stateParams.channelId).name;
+          }
+        }
+      })
+
+      .state('channels.direct', {
+        url: '/{uid}/messages/direct',
+        templateUrl: 'partials/mesages.html',
+        controller: 'MessagesCtrl as messagesCtrl',
+        resolve: {
+          messages: function($stateParams, Messages, profile){
+            return Messages.forUsers($stateParams.uid, profile.$id).$loaded();
+          },
+          channelName: function($stateParams, Users){
+            return Users.all.$loaded().then(function(){
+              return '@'+Users.getDisplayName($stateParams.uid);
+            });
+          }
+        }
+      })
+
+      .state('channels.create', {
+        url: '/create',
+        templateUrl: 'partials/create.html',
+        controller: 'ChannelsCtrl as channelsCtrl',
+      })
+
     $urlRouterProvider.otherwise('/');
-})
+  })

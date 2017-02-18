@@ -1,16 +1,24 @@
-<div>
-  <div>
-    <h2>Register</h2>
+<div class="page-wrapper bgColor">
+
+  <div class="page-header">
+    <h1>Register</h1>
   </div>
-  <div ng-show="loginCtrl.error">
-    <span>{{ loginCtrl.error.message }}</span>
+
+  <div ng-show="authCtrl.error">
+    <span>{{ authCtrl.error.message }}</span>
   </div>
-  <form ng-submit="loginCtrl.register()">
-    <input type="email" class="form-control" placeholder="Email" ng-model="loginCtrl.user.email">
-    <br>
-    <input type="password" class="form-control" placeholder="Password" ng-model="loginCtrl.user.password">
-    <br>
-    <input type="submit" class="btn btn-primary" value="Register">
-    <a class="btn btn-danger" ui-sref="start">Cancel</a>
+
+ <form ng-submit="authCtrl.register()">
+    <div class="input-group">
+      <input type="email" class="form-control" placeholder="Email" ng-model="authCtrl.user.email">
+    </div><br>
+    <div class="input-group">
+      <input type="password" class="form-control" placeholder="Password" ng-model="authCtrl.user.password">
+    </div><br>
+    <input type="submit" class="btn btn-success" value="Register">
+    <a href="#" class="btn btn-primary" ui-sref="home">Cancel</a>
   </form>
+
 </div>
+ <!-- <input type="submit" class="btn btn-success" value="Register">
+ -->
