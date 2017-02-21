@@ -13,7 +13,7 @@ angular.module('UserApp')
     channelsCtrl.getDisplayName = Users.getDisplayName;
     channelsCtrl.getGravatar = Users.getGravatar;
     channelsCtrl.getBusinessName = Users.getBusinessName;
-
+    channelsCtrl.sales = Users.getSalesStatus;
     channelsCtrl.users = Users.all;
 
     Users.setOnline(channelsCtrl.profile.$id);

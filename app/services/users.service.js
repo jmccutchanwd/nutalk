@@ -18,6 +18,10 @@ angular.module('UserApp')
         return users.$getRecord(uid).businessName;
       },
 
+      getSalesStatus: function(uid){
+        return users.$getRecord(uid).sales;
+      },
+
       setOnline: function(uid){
         var connected = $firebaseObject(connectedRef);
         var online = $firebaseArray(usersRef.child(uid+'/online'));
@@ -33,6 +37,5 @@ angular.module('UserApp')
 
       all: users
     };
-
     return Users;
   });

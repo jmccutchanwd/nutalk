@@ -16,12 +16,68 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <!-- My CSS -->
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/customer.style.css">
   </head>
   <body ng-app="UserApp">
+    <div class="container siteColor">
+      <div  class="row">
+        <nav class="navbar navbar-default header">
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">Hounds on Patrol</a>
+            </div>
 
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
+                <li><a href="#" class="White">Hydrants</a></li>
+                <li><a href="#">Guarantee</a></li>
+                <li><a href="#">Delivery</a></li>
+              </ul>
+               <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">1-800-456-9012</a></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+        <div class="col-md-12">
+          <h1>Cats For Sale</h1>
+          <hr>
+          <br>
+          <br>
+        </div><!-- /.col-md-12-->
+        <div class="col-md-6">
+          <img src="/images/dog.jpg" alt="smiling dog" class="img-responsive center-block">
+          <span class="col-md-12 spacer" style="height:50px;"></span>
+          <h2>We Sell Cats</h2>
+          <p>Cats are delicious. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ipsum lacus, suscipit a pretium in, semper quis urna. Aenean at maximus elit. Aliquam lacinia, ligula eu accumsan iaculis, elit libero facilisis lorem, non condimentum sapien nisl id nulla.</p>
+          <h3>The Chase Continues</h3>
+          <p>Vivamus egestas dolor a imperdiet scelerisque. Donec congue, ante eu pellentesque ornare, eros nunc blandit felis, et porta risus purus eu mi. Praesent lacinia rutrum lorem et congue. Nulla facilisi. Fusce pellentesque maximus fermentum. Pellentesque suscipit purus ligula, nec lacinia magna ornare in. Nullam mollis molestie lorem, at lobortis sapien lobortis at. Cras suscipit magna eu dui posuere, sed elementum ante ultricies. Vivamus sed tempus tortor. Sed eu malesuada metus, ut ultrices ante.</p>
+        </div><!-- /.col-md-6-->
+        <div class="col-md-6">
+          <h3>Locally Owned Business</h3>
+          <p>Pellentesque suscipit purus ligula, nec lacinia magna ornare in. Nullam mollis molestie lorem, at lobortis sapien lobortis at. Cras suscipit magna eu dui posuere, sed elementum ante ultricies.</p>
+          <h4>Cats Sourced Locally</h4>
+          <p>Puppy kitty ipsum dolor sit good dog nap maine coon cat polydactyl dragging tabby hamster buddy puppy kisses bird food. Birds fleas Rover stay heel tongue puppy fluffy Fido fetch. Catch vaccination tongue meow kibble running field water ball bird food ferret feathers yawn kitten. Food kibble Buddy warm paws twine parakeet food leash. Parrot nest dinnertime litter pet carrier fetch aquarium Tigger food lol catz fish bird seed kitten kibble toys kibble nap. Paws brush aquatic nap cockatiel Scooby snacks small animals drool toys whiskers kitty slobber.Fleas finch Buddy walk Mittens dinnertime Mittens slobbery dog wagging mouse run fast left paw pet gate.</p>
+          <p>Yawn swimming vaccination yawn licks walk tuxedo Snowball cage speak food. Chirp slobbery finch lick cage scratch vaccine stay. Yawn critters yawn pet gate fetch bird food litter box tail pet gate small animals collar groom Mittens walk. Cage Buddy cockatiel bark cockatiel field food shake barky string aquarium. Kibble pet supplies pet gate throw teeth aquarium running. Run aquarium food bark whiskers treats nap vitamins smooshy tooth nest lazy cat.Aquatic mouse good boy wag tail vaccine slobbery fish hamster left paw treats play critters run fast twine dinnertime teeth Mittens treats feathers fish. Fido dragging pet food canary critters ferret parrot warm slobbery leash dog house biscuit pet food turtle bark ID tag pet supplies.</p>
+          <span class="col-md-12 spacer" style="height:40px;"></span>
           <ui-view></ui-view><!-- / App View -->
-
+        </div><!-- /.col-md-6-->
+        <span class="col-md-12 spacer" style="height:50px;"></span>
+        <footer class="col-md-12">
+        <hr>
+          <h4>Copyright 2017 &copy; The Dog Enterprises, llc.</h4>
+        </footer>
+      </div><!-- /.row-->
+    </div><!-- /.container -->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="/lib/jquery/dist/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -45,6 +101,8 @@
     <script src="/lib/angular-filter/dist/angular-filter.js"></script>
     <!-- Angular Fire -->
     <script src="/lib/angularfire/dist/angularfire.js"></script>
+    <!-- Angular-scroll-glue -->
+    <script src="/lib/angular-scroll-glue/src/scrollglue.js"></script>
 
 
     <!-- My App -->

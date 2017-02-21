@@ -12,8 +12,12 @@ angular.module('UserApp')
   firebase.initializeApp(config);
   //
   $stateProvider
-      .state('home', {
+      .state('sales', {
         url: '/',
+        templateUrl: 'partials/sales.html'
+      })
+      .state('home', {
+        url: '/home',
         templateUrl: 'partials/home.html',
         resolve: {
           requireNoAuth: function($state, Auth){
@@ -32,7 +36,7 @@ angular.module('UserApp')
         resolve: {
           requireNoAuth: function($state, Auth){
             return Auth.$requireSignIn().then(function(auth){
-              $state.go('home');
+              $state.go('sales');
             }, function(error){
               return;
             })
@@ -46,7 +50,7 @@ angular.module('UserApp')
         resolve: {
           requireNoAuth: function($state, Auth){
             return Auth.$requireSignIn().then(function(auth){
-              $state.go('home');
+              $state.go('sales');
             }, function(error){
               return;
             })
@@ -61,7 +65,7 @@ angular.module('UserApp')
         resolve: {
           auth: function($state, Users, Auth){
             return Auth.$requireSignIn().catch(function(){ // if not authenticated, catch them
-              $state.go('home');
+              $state.go('sales');
             });
           },
 
@@ -91,7 +95,7 @@ angular.module('UserApp')
                 }
               });
             }, function(error){
-              $state.go('home');
+              $state.go('sales');
             });
           }
         }
